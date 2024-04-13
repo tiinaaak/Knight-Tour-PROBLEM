@@ -1,0 +1,32 @@
+function solveKnightTour(board, row, col, move_number):
+    if move_number equals to the total number of cells on the board:
+        return true  // All cells have been visited
+
+    // Array representing all possible moves of a knight
+    possible_moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]
+
+    for each move in possible_moves:
+        next_row = row + move[0]
+        next_col = col + move[1]
+
+        if next_row and next_col are within the board and board[next_row][next_col] is not visited:
+            // Mark the cell as visited
+            board[next_row][next_col] = move_number
+
+            // Recursively try the next move
+            if solveKnightTour(board, next_row, next_col, move_number + 1) returns true:
+                return true  // Knight's tour is complete
+
+            // Backtrack: Undo the move
+            board[next_row][next_col] = -1
+
+    return false  // No valid move found from this position
+
+function knightTour(n):
+    Initialize an n x n chessboard with all cells marked as unvisited (-1)
+    Start from any cell (e.g., cell (0, 0))
+    Set move_number to 0
+    if solveKnightTour(board, 0, 0, move_number) returns true:
+        Print the solution board
+    else:
+        Print "No solution exists"
